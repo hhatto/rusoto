@@ -12,6 +12,8 @@ use super::request::{BufferedHttpResponse, HttpDispatchError};
 pub enum RusotoError<E> {
     /// A service-specific error occurred.
     Service(E),
+    /// A common-service error occurred.
+    ServiceCommonError(String),
     /// An error occurred dispatching the HTTP request
     HttpDispatch(HttpDispatchError),
     /// An error was encountered with AWS credentials.
@@ -68,6 +70,7 @@ impl<E: Error + 'static> Error for RusotoError<E> {
     fn description(&self) -> &str {
         match *self {
             RusotoError::Service(ref err) => err.description(),
+            RusotoError::ServiceCommonError(ref err) => err,
             RusotoError::Validation(ref cause) => cause,
             RusotoError::Credentials(ref err) => err.description(),
             RusotoError::HttpDispatch(ref dispatch_error) => dispatch_error.description(),

@@ -227,7 +227,12 @@ impl XmlErrorTypes {
             }
         }
 
-        type_matchers.push(format!("_ => {{}}"));
+        type_matchers.push(format!("_ => {{
+                return RusotoError::ServiceCommonError(
+                    format!(\"Code: {{}}, Message: {{}}\", parsed_error.code, parsed_error.message)
+                )
+            }}")
+        );
         type_matchers.join(",")
     }
 }
