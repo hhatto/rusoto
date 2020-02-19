@@ -978,7 +978,7 @@ impl AnalyticsS3ExportFileFormatSerializer {
     }
 }
 
-pub type StreamingBody = ::rusoto_core::ByteStream;
+pub type StreamingBody = rusoto_core::ByteStream;
 struct BodyDeserializer;
 impl BodyDeserializer {
     #[allow(unused_variables)]

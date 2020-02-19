@@ -434,7 +434,7 @@ where
             // Add a second type for streaming blobs, which are the only streaming type we can have
             writeln!(
                 writer,
-                "pub type {} = ::rusoto_core::ByteStream;",
+                "pub type {} = rusoto_core::ByteStream;",
                 mutate_type_name_for_streaming(&type_name)
             )?;
         }
